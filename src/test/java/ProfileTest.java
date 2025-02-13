@@ -18,7 +18,7 @@ public void changeProfileName () throws InterruptedException {
     //click on save button
     //Assertions (actual vs expected)
 
-    navigateToPage();
+    //navigateToPage();
     provideEmail("karina.usmanova01@testpro.io");
     providePassword("YrEdlRVe");
     clickLoginBtn();
@@ -71,6 +71,7 @@ public void changeProfileName () throws InterruptedException {
         return UUID.randomUUID().toString().replace("-","");
 
         }
+
 
 
 }
