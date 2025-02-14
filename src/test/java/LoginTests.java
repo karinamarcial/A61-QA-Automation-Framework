@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,10 +22,10 @@ public class LoginTests extends BaseTest {
        clickLoginBtn();
 
 
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+       // WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         // or "img[class='avatar']"
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         Assert.assertTrue(avatarIcon.isDisplayed());
-        Thread.sleep(2000);
 
     }
 
