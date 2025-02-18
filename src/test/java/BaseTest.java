@@ -4,12 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -18,6 +17,7 @@ public class BaseTest {
     public WebDriver driver;
     public String url;
     WebDriverWait wait;
+    Actions actions;
 
     @BeforeSuite
     static void setupClass() {
@@ -34,6 +34,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         url=baseURL;
+        actions = new Actions(driver);
         navigateToPage();
     }
    @AfterMethod
@@ -60,5 +61,17 @@ public class BaseTest {
 
     public void navigateToPage() {
         driver.get(url);
+    }
+
+    public boolean isSongPlaying() {
+        WebElement soundBarVisualizer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.bars")));
+        return soundBarVisualizer.isDisplayed();
+    }
+
+
+    public WebElement hoverOver() {
+     WebElement playButton = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+     actions.moveToElement(playButton).perform();
+      return wait.until(ExpectedConditions.visibilityOf(playButton));
     }
 }
