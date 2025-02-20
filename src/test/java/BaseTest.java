@@ -19,6 +19,16 @@ public class BaseTest {
     WebDriverWait wait;
     Actions actions;
 
+    @DataProvider (name = "loginNegativeTestData")
+    public Object [][] getDataFromDataProvider() {
+        return new Object[][] {
+                {"arina.usmanova01@testpro.io","123456"},
+                {"karina.usmanova01@testpro.io","123456"},
+                {"",""},
+                {"arina.usmanova01@testpro.io","YrEdlRVe"},
+        };
+    }
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();

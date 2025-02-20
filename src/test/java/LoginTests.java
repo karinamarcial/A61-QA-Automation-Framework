@@ -3,6 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
 
@@ -46,6 +48,34 @@ public class LoginTests extends BaseTest {
 
         //step5: expected vs actual result
         Assert.assertEquals(driver.getCurrentUrl(), url);
+
+    }
+
+    //Login test using Page Object Model
+    @Test
+    public void positiveLoginTest(){
+        //Objects
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        //Steps
+        loginPage.provideEmail("karina.usmanova01@testpro.io");
+        loginPage.providePassword("YrEdlRVe");
+        loginPage.clickLoginButton();
+        //or loginPage.login(); will do the same as these 3 lines
+        //Expected vs Actual
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
+    @Test(dataProvider = "loginNegativeTestData")
+    public void negativeLoginTests(String email, String password){
+        //Objects
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        //Steps
+        loginPage.provideEmail(email);
+        loginPage.providePassword(password);
+        loginPage.clickLoginButton();
+        Assert.assertEquals(driver.getCurrentUrl(),url);
 
     }
 }
