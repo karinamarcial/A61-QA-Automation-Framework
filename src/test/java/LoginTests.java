@@ -9,6 +9,16 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test
+    public void registrationNavigation(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.clickRegistrationLink();
+        String urlRegistration = "https://qa.koel.app/registration";
+        Assert.assertEquals(driver.getCurrentUrl(),urlRegistration);
+
+    }
+
+    @Test
     public void loginEmptyEmailPassword() {
 
         navigateToPage();

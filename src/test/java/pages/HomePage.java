@@ -12,9 +12,21 @@ public class HomePage extends BasePage{
     //Page Elements
 
     By userAvatarIcon = By.cssSelector("img.avatar");
+    By searchField = By.cssSelector("input[type='search']");
+    By viewAllButton = By.xpath("//section[@class='songs']//button[@data-test='view-all-songs-btn']");
+    By firstSong = By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item'][1]");
+    By addToButton = By.cssSelector("button.btn-add-to");
+    By playlist = By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'karina playlist new')]");
+    By notificationMsg = By.cssSelector("div.success.show");
 
     //helper method
     public WebElement getUserAvatarIcon(){
         return findElement(userAvatarIcon);
     }
+    public void typeInSearchField (String name){findElement(searchField).sendKeys(name);}
+    public void clickOnViewAllButton(){findElement(viewAllButton).click();}
+    public void clickFirstSong(){findElement(firstSong).click();}
+    public void clickAddToButton(){findElement(addToButton).click();}
+    public void choosePlaylist(){findElement(playlist).click();}
+    public String getAddToPlaylistSuccessfulMsg(){return findElement(notificationMsg).getText();}
 }

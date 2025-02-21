@@ -4,6 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
+
 import java.util.List;
 
 public class HomePageTest extends BaseTest {
@@ -99,5 +102,21 @@ public class HomePageTest extends BaseTest {
     public String getRenamePlaylistSuccessfulMsg () {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
+    }
+
+    @Test
+    public void addSongToPlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        String expectedSongAddedMsg = "Added 1 song into \"karina playlist new.\"";
+        loginPage.login();
+        Thread.sleep(2000);
+        homePage.typeInSearchField("dee");
+        homePage.clickOnViewAllButton();
+        homePage.clickFirstSong();
+        homePage.clickAddToButton();
+        homePage.choosePlaylist();
+        Assert.assertEquals(homePage.getAddToPlaylistSuccessfulMsg(),expectedSongAddedMsg);
     }
 }
