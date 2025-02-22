@@ -10,16 +10,16 @@ import pages.LoginPage;
 import java.util.List;
 
 public class HomePageTest extends BaseTest {
-    String newPlaylistName = "TestPRO";
+
 
     @Test
     public void hoverOverPlayButton() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        provideEmail("karina.usmanova01@testpro.io");
-        providePassword("YrEdlRVe");
-        clickLoginBtn();
-        Thread.sleep(2000);
-        Assert.assertTrue(hoverOver().isDisplayed());
+       loginPage.login();
+       Thread.sleep(5000);
+       Assert.assertTrue(homePage.hoverOver().isDisplayed());
     }
 
     @Test
@@ -68,41 +68,25 @@ public class HomePageTest extends BaseTest {
    @Test
    public void renamePlaylist() throws InterruptedException {
 
-        String expectedSuccessfulMsg = "Updated playlist \"TestPRO.\"";
+       String updatedPlaylistMsg = "Updated playlist \"TestPRO.\"";
+       String newPlaylistName = "TestPRO";
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
 
         //login
        //doubleClickPlaylist
        //enter new name
        //Assert that new name has been updated
 
-        provideEmail("karina.usmanova01@testpro.io");
-        providePassword("YrEdlRVe");
-        clickLoginBtn();
-        Thread.sleep(2000);
-        doubleClickPlaylist();
-        Thread.sleep(2000);
-        enterNewPlaylistName();
-       Assert.assertEquals(getRenamePlaylistSuccessfulMsg(),expectedSuccessfulMsg);
+        loginPage.login();
+        homePage.doubleClickPlaylist();
+        homePage.enterNewPlaylistName(newPlaylistName);
+        Assert.assertEquals(homePage.getRenamePlaylistSuccessfulMsg(),updatedPlaylistMsg);
    }
 
-    public void doubleClickPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        actions.doubleClick(playlist).perform();
-    }
 
-    public void enterNewPlaylistName() {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        //clear() does not work
-        //workaround is ctrl A (to select all) then backspace to clear then replace with new playlist name
-        playlistInputField.sendKeys(Keys.chord(Keys.COMMAND,"A",Keys.BACK_SPACE));
-        playlistInputField.sendKeys(newPlaylistName);
-        playlistInputField.sendKeys(Keys.ENTER);
-    }
-
-    public String getRenamePlaylistSuccessfulMsg () {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
@@ -119,4 +103,5 @@ public class HomePageTest extends BaseTest {
         homePage.choosePlaylist();
         Assert.assertEquals(homePage.getAddToPlaylistSuccessfulMsg(),expectedSongAddedMsg);
     }
+
 }
