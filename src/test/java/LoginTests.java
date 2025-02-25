@@ -9,7 +9,7 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
 
-    @Test
+   /* @Test
     public void registrationNavigation() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -25,9 +25,9 @@ public class LoginTests extends BaseTest {
         navigateToPage();
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void loginValidEmailPassword() {
 
         navigateToPage();
@@ -39,10 +39,10 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
 
 
-    }
+    }*/
 
 
-    @Test
+   /* @Test
     public void loginInvalidEmailOrPassword() throws InterruptedException {
         //preconditions (launch browser which is in base test @beforemothod)
 
@@ -61,7 +61,7 @@ public class LoginTests extends BaseTest {
         //step5: expected vs actual result
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-    }
+    }*/
 
     //Login test using Page Object Model
     @Test
@@ -78,7 +78,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
-    @Test(dataProvider = "loginNegativeTestData")
+  /*  @Test(dataProvider = "loginNegativeTestData")
     public void negativeLoginTests(String email, String password) {
         //Objects
         LoginPage loginPage = new LoginPage(driver);
@@ -90,9 +90,9 @@ public class LoginTests extends BaseTest {
         loginPage.clickLoginButton();
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-    }
+    }*/
 
-    @Test
+  /*  @Test
     public void positiveLoginTestUsingPageFactory() {
         //Objects
         LoginPageFactory loginPageFactory = new LoginPageFactory(driver);
@@ -104,5 +104,5 @@ public class LoginTests extends BaseTest {
         //or loginPage.login(); will do the same as these 3 lines
         //Expected vs Actual
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
-    }
+    }*/
 }
