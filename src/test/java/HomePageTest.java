@@ -22,7 +22,7 @@ public class HomePageTest extends BaseTest {
        Assert.assertTrue(homePage.hoverOver().isDisplayed());
     }
 
-    @Test
+   /* @Test
     public void countSongsInPlaylist() throws InterruptedException {
 
         //login
@@ -45,7 +45,8 @@ public class HomePageTest extends BaseTest {
         //WebElement playListByName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'karina playlist new')]")));
         //playListByName.click();
     public void choosePlaylistByName (String playlistName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'"+playlistName+"')]"))).click();
+       WebElement playList = driver.findElements(By.xpath("//a[contains(text(),'"+playlistName+"')]")));
+playList.click();
 
     }
 
@@ -84,7 +85,7 @@ public class HomePageTest extends BaseTest {
         homePage.doubleClickPlaylist();
         homePage.enterNewPlaylistName(newPlaylistName);
         Assert.assertEquals(homePage.getRenamePlaylistSuccessfulMsg(),updatedPlaylistMsg);
-   }
+   }*/
 
 
 

@@ -22,18 +22,18 @@ public class Homework20 extends BaseTest {
     }
 
     public String deletedPlaylistSuccessfulMsg() {
-        WebElement successfulMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        WebElement successfulMsg = driver.findElement(By.cssSelector("div.success.show"));
         return successfulMsg.getText();
 
     }
 
     public void clickOnDeletePlaylistBtn() {
-        WebElement deletePlaylistBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".del.btn-delete-playlist")));
+        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector(".del.btn-delete-playlist"));
         deletePlaylistBtn.click();
     }
 
     public void clickOnThePlaylist() {
-        WebElement playList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(4)")));
+        WebElement playList = driver.findElement(By.cssSelector(".playlist:nth-child(4)"));
         playList.click();
 
     }

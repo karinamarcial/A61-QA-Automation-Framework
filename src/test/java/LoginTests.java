@@ -67,8 +67,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void positiveLoginTest() {
         //Objects
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         //Steps
         loginPage.provideEmail("karina.usmanova01@testpro.io");
         loginPage.providePassword("YrEdlRVe");
@@ -78,19 +78,19 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
-  /*  @Test(dataProvider = "loginNegativeTestData")
+    @Test(dataProvider = "loginNegativeTestData")
     public void negativeLoginTests(String email, String password) {
         //Objects
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         //Steps
         loginPage.provideEmail(email);
         loginPage.providePassword(password);
         loginPage.clickLoginButton();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
 
-    }*/
+    }
 
   /*  @Test
     public void positiveLoginTestUsingPageFactory() {

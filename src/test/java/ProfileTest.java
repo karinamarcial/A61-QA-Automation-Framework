@@ -18,7 +18,7 @@ public void changeProfileName () throws InterruptedException {
     //click on save button
     //Assertions (actual vs expected)
 
-    navigateToPage();
+
     provideEmail("karina.usmanova01@testpro.io");
     providePassword("YrEdlRVe");
     clickLoginBtn();
