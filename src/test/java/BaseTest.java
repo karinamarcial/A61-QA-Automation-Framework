@@ -57,13 +57,6 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String baseURL) throws MalformedURLException {
-        //      Added ChromeOptions argument below to fix websocket error
-        //ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--remote-allow-origins=*");
-       // driver = new ChromeDriver(options);
-        //driver = new SafariDriver();
-        //driver = pickBrowser(System.getProperty("browser"));
-        //driver.manage().window().maximize();
         threadDriver.set(pickBrowser(System.getProperty("browser")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -107,7 +100,11 @@ public WebDriver pickBrowser(String browser) throws MalformedURLException {
 
     DesiredCapabilities caps = new DesiredCapabilities();
     String gridURL = "http://192.168.0.28:4444";
+    ChromeOptions chromeOptions = new ChromeOptions();
+    chromeOptions.addArguments("--remote-allow-origins=*");
         switch(browser){
+            case "chrome":
+                return driver = new ChromeDriver(chromeOptions);
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
@@ -138,8 +135,6 @@ public WebDriver pickBrowser(String browser) throws MalformedURLException {
 
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions= new ChromeOptions();
-                chromeOptions.addArguments("--remote-allow-origins=*");
                 return driver= new ChromeDriver(chromeOptions);
 
         }
