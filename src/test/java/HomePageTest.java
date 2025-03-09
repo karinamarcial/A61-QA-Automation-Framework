@@ -9,6 +9,37 @@ import static java.sql.DriverManager.getDriver;
 public class HomePageTest extends BaseTest {
 
     @Test
+    public void hoverOverPlayButton() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        BasePage basePage = new BasePage(getDriver());
+
+        loginPage.login();
+        Thread.sleep(5000);
+        Assert.assertTrue(basePage.hoverOverPlay().isDisplayed());
+    }
+
+   @Test
+    public void countSongsInPlaylist() throws InterruptedException {
+       LoginPage loginPage = new LoginPage(getDriver());
+       HomePage homePage = new HomePage(getDriver());
+
+       //login
+       //choosePlaylistByName
+       //displayAllSongs
+       //Assert - contains amount of songs as mentioned in the playlist info section
+
+       loginPage.provideEmail("karina.usmanova01@testpro.io");
+       loginPage.providePassword("YrEdlRVe");
+       loginPage.clickLoginButton();
+       homePage.choosePlaylistByName("playlist for count");
+       Thread.sleep(2000);
+       homePage.displayAllSongs();
+       Thread.sleep(2000);
+       Assert.assertTrue(homePage.getPlaylistDetail().contains(String.valueOf(homePage.countSongs())));
+   }
+
+
+    @Test
     public void renamePlaylist() throws InterruptedException {
 
         String updatedPlaylistMsg = "Updated playlist \"TestPRO.\"";

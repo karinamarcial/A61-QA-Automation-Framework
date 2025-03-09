@@ -12,10 +12,9 @@ public class allSongsTest extends BaseTest {
 
 @Test
 public void playSong() throws InterruptedException {
-    LoginPage loginPage = new LoginPage(driver);
-    HomePage homePage = new HomePage(driver);
-    AllSongsPage allSongsPage = new AllSongsPage(driver);
-
+    LoginPage loginPage = new LoginPage(getDriver());
+    HomePage homePage = new HomePage(getDriver());
+    AllSongsPage allSongsPage = new AllSongsPage(getDriver());
 
     // login
     //choose all song list
@@ -33,7 +32,20 @@ public void playSong() throws InterruptedException {
   Assert.assertTrue(allSongsPage.isSongPlaying());
 
 }
+@Test
+public void playNextSong() throws InterruptedException {
+    LoginPage loginPage = new LoginPage(getDriver());
+    HomePage homePage = new HomePage(getDriver());
+    AllSongsPage allSongsPage = new AllSongsPage(getDriver());
 
+    loginPage.login();
+    Thread.sleep(2000);
+    allSongsPage.playNextSong();
+    Thread.sleep(2000);
+    homePage.clickPlayButton();
+
+    Assert.assertTrue(homePage.pauseButtonIsDisplayed());
+ }
 
 }
 

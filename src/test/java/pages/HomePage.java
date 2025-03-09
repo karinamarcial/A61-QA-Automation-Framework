@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     By viewAllButton = By.xpath("//section[@class='songs']//button[@data-test='view-all-songs-btn']");
     By firstSong = By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item'][1]");
     By addToButton = By.cssSelector("button.btn-add-to");
-    By playlist = By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'karina playlist new.')]");
+    By playlist = By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'karina playlist new')]");
     By notificationMsg = By.cssSelector("div.success.show");
     By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
     By playlistNameField = By.cssSelector("[name='name']");
@@ -25,6 +25,8 @@ public class HomePage extends BasePage {
     By playListByName = By.xpath("//a[contains(text(),'playlist for count')]");
     By playlistDetails = By.cssSelector("span.meta.text-secondary span.meta");
     By listOfSongs = By.cssSelector("section#playlistWrapper td.title");
+    By pauseButton = By.xpath("//span[@class='pause']//i[@class='fa fa-pause']");
+    By playButton = By.xpath("//span[@class='play']//i[@class='fa fa-play']");
 
 
     //helper methods
@@ -83,8 +85,9 @@ public class HomePage extends BasePage {
         return findElement(playlistDetails).getText();
     }
 
-    public Dimension countSongs() {
-        return findElement(listOfSongs).getSize();
+
+    public int countSongs() {
+        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
     }
 
     public void displayAllSongs() {
@@ -93,5 +96,13 @@ public class HomePage extends BasePage {
         for (WebElement e: songList) {
             System.out.println(e.getText());
         }
+    }
+
+    public boolean pauseButtonIsDisplayed() {
+      return findElement(pauseButton).isDisplayed();
+    }
+
+    public void clickPlayButton() {
+        findElement(playButton).click();
     }
 }
