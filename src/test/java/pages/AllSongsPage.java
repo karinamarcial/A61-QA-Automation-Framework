@@ -9,9 +9,11 @@ public class AllSongsPage extends BasePage{
     public AllSongsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
+
+
     //Elements
     By playbackBtn = By.cssSelector("li.playback");
-
+    By firstSong = By.cssSelector(".all-songs tr.song-item:nth-child(1)");
 
 
     //Helper methods
@@ -21,8 +23,9 @@ public class AllSongsPage extends BasePage{
 
     }
     public void contextClickFirstSong() {
-       WebElement firstSong= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
-        actions.contextClick(firstSong).perform();
+        contextClick(firstSong);
+      // WebElement firstSong= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".all-songs tr.song-item:nth-child(1)")));
+      //  actions.contextClick(firstSong).perform();
     }
 
 }

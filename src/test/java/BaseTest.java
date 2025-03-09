@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class BaseTest {
 
-    public WebDriver driver;
+    public WebDriver driver=null;
     public String url;
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
@@ -74,7 +74,7 @@ public class BaseTest {
         threadDriver.remove();
     }
 
-   public void clickLoginBtn() {
+   /*public void clickLoginBtn() {
         WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
         loginButton.click();
     }
@@ -89,7 +89,7 @@ public class BaseTest {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
-    }
+    }*/
 
     public void navigateToPage(String url) {
         //driver.get(url);

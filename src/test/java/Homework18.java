@@ -2,15 +2,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class Homework18 extends BaseTest{
 
 @Test
 public void playSong() throws InterruptedException {
+    LoginPage loginPage = new LoginPage(getDriver());
 
-    provideEmail("karina.usmanova01@testpro.io");
-    providePassword("YrEdlRVe");
-    clickLoginBtn();
+    loginPage.provideEmail("karina.usmanova01@testpro.io");
+    loginPage.providePassword("YrEdlRVe");
+    loginPage.clickLoginButton();
     Thread.sleep(2000);
 
     playNextSong();

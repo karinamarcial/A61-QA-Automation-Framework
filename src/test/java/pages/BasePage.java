@@ -32,6 +32,11 @@ public class BasePage {
         actions.doubleClick(findElement(locator)).perform();
     }
 
+    public void contextClick(By locator) {
+        actions.contextClick(findElement(locator)).perform();
+
+    }
+
     public boolean isSongPlaying() {
         WebElement soundBarVisualizer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.bars")));
         return soundBarVisualizer.isDisplayed();
@@ -42,7 +47,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
 
     }
-    public WebElement hoverOver() {
+    public WebElement hoverOverPlay() {
         WebElement playButton = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         actions.moveToElement(playButton).perform();
         return wait.until(ExpectedConditions.visibilityOf(playButton));

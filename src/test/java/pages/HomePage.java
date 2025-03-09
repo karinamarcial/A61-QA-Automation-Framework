@@ -1,10 +1,8 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.*;
+
+import java.util.List;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
@@ -19,15 +17,17 @@ public class HomePage extends BasePage {
     By viewAllButton = By.xpath("//section[@class='songs']//button[@data-test='view-all-songs-btn']");
     By firstSong = By.xpath("//section[@id='songResultsWrapper']//tr[@class='song-item'][1]");
     By addToButton = By.cssSelector("button.btn-add-to");
-    By playlist = By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'karina playlist new')]");
+    By playlist = By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'karina playlist new.')]");
     By notificationMsg = By.cssSelector("div.success.show");
     By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
     By playlistNameField = By.cssSelector("[name='name']");
     By renamePlaylistSuccessfulMsg = By.cssSelector("div.success.show");
+    By playListByName = By.xpath("//a[contains(text(),'playlist for count')]");
+    By playlistDetails = By.cssSelector("span.meta.text-secondary span.meta");
+    By listOfSongs = By.cssSelector("section#playlistWrapper td.title");
 
 
-
-    //helper method
+    //helper methods
     public WebElement getUserAvatarIcon() {
         return findElement(userAvatarIcon);
     }
@@ -59,8 +59,9 @@ public class HomePage extends BasePage {
     public void doubleClickPlaylist() {
         doubleClick(firstPlaylist);
     }
+
     public void enterNewPlaylistName(String newPlaylistName) {
-        findElement(playlistNameField).sendKeys(Keys.chord(Keys.COMMAND,"A",Keys.BACK_SPACE));
+        findElement(playlistNameField).sendKeys(Keys.chord(Keys.COMMAND, "A", Keys.BACK_SPACE));
         findElement(playlistNameField).sendKeys(newPlaylistName);
         findElement(playlistNameField).sendKeys(Keys.ENTER);
         //WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
@@ -68,9 +69,29 @@ public class HomePage extends BasePage {
         //workaround is ctrl A (to select all) then backspace to clear then replace with new playlist name
 
     }
-    public String getRenamePlaylistSuccessfulMsg () {
+
+    public String getRenamePlaylistSuccessfulMsg() {
         return findElement(renamePlaylistSuccessfulMsg).getText();
     }
 
+    public void choosePlaylistByName(String name) {
+        findElement(playListByName).click();
 
+    }
+
+    public String getPlaylistDetail() {
+        return findElement(playlistDetails).getText();
+    }
+
+    public Dimension countSongs() {
+        return findElement(listOfSongs).getSize();
+    }
+
+    public void displayAllSongs() {
+        List<WebElement> songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
+        System.out.println("Number of songs found: " +countSongs());
+        for (WebElement e: songList) {
+            System.out.println(e.getText());
+        }
+    }
 }

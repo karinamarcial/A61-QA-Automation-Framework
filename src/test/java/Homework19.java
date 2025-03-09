@@ -2,17 +2,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 
 public class Homework19 extends BaseTest{
 
     @Test
     public void deletePlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
 
         String confirmationNotification = "Deleted playlist \"playlist to delete.\"";
 
-        provideEmail("karina.usmanova01@testpro.io");
-        providePassword("YrEdlRVe");
-        clickLoginBtn();
+        loginPage.provideEmail("karina.usmanova01@testpro.io");
+        loginPage.providePassword("YrEdlRVe");
+        loginPage.clickLoginButton();
         Thread.sleep(2000);
 
         clickOnThePlaylist();

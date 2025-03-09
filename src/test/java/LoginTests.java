@@ -9,59 +9,6 @@ import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
 
-   /* @Test
-    public void registrationNavigation() {
-        LoginPage loginPage = new LoginPage(driver);
-
-        loginPage.clickRegistrationLink();
-        String urlRegistration = "https://qa.koel.app/registration";
-        Assert.assertEquals(driver.getCurrentUrl(), urlRegistration);
-
-    }
-
-    @Test
-    public void loginEmptyEmailPassword() {
-
-        navigateToPage();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-
-    }*/
-
-   /* @Test
-    public void loginValidEmailPassword() {
-
-        navigateToPage();
-        provideEmail("karina.usmanova01@testpro.io");
-        providePassword("YrEdlRVe");
-        clickLoginBtn();
-
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
-
-    }*/
-
-
-   /* @Test
-    public void loginInvalidEmailOrPassword() throws InterruptedException {
-        //preconditions (launch browser which is in base test @beforemothod)
-
-        //step1: Open browser
-        navigateToPage();
-
-        //step2: Enter wrong email
-        provideEmail("arina.usmanova01@testpro.io");
-
-        //step3: enter password
-        providePassword("YrEdlRVe");
-
-        //step4: click login button
-        clickLoginBtn();
-
-        //step5: expected vs actual result
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-
-    }*/
 
     //Login test using Page Object Model
     @Test
@@ -73,8 +20,6 @@ public class LoginTests extends BaseTest {
         loginPage.provideEmail("karina.usmanova01@testpro.io");
         loginPage.providePassword("YrEdlRVe");
         loginPage.clickLoginButton();
-        //or loginPage.login(); will do the same as these 3 lines
-        //Expected vs Actual
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
@@ -89,6 +34,16 @@ public class LoginTests extends BaseTest {
         loginPage.providePassword(password);
         loginPage.clickLoginButton();
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
+
+    }
+
+    @Test
+    public void registrationNavigation() {
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.clickRegistrationLink();
+        String urlRegistration = "https://qa.koel.app/registration";
+        Assert.assertEquals(getDriver().getCurrentUrl(), urlRegistration);
 
     }
 

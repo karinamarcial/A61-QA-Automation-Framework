@@ -18,15 +18,12 @@ public class LoginPage extends BasePage {
     //Helper methods
 
     public void provideEmail(String email) {
-
         findElement(emailField).sendKeys(email);
     }
     public void providePassword(String password) {
-
         findElement(passwordField).sendKeys(password);
     }
     public void clickLoginButton() {
-
         findElement(loginButton).click();
     }
     public void clickRegistrationLink() {
