@@ -24,9 +24,10 @@ public class HomePage extends BasePage {
     By renamePlaylistSuccessfulMsg = By.cssSelector("div.success.show");
     By playListByName = By.xpath("//a[contains(text(),'playlist for count')]");
     By playlistDetails = By.cssSelector("span.meta.text-secondary span.meta");
-    By listOfSongs = By.cssSelector("section#playlistWrapper td.title");
     By pauseButton = By.xpath("//span[@class='pause']//i[@class='fa fa-pause']");
     By playButton = By.xpath("//span[@class='play']//i[@class='fa fa-play']");
+    By playlistToDelete = By.cssSelector(".playlist:nth-child(6)");
+    By deletePlaylistBtn = By.cssSelector(".del.btn-delete-playlist");
 
 
     //helper methods
@@ -104,5 +105,19 @@ public class HomePage extends BasePage {
 
     public void clickPlayButton() {
         findElement(playButton).click();
+    }
+
+    public String deletedPlaylistSuccessfulMsg() {
+       return findElement(notificationMsg).getText();
+
+    }
+
+    public void clickOnDeletePlaylistBtn() {
+       findElement(deletePlaylistBtn).click();
+    }
+
+    public void clickOnThePlaylist() {
+       findElement(playlistToDelete).click();
+
     }
 }

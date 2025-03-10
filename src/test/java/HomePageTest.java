@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
@@ -75,6 +77,29 @@ public class HomePageTest extends BaseTest {
         homePage.choosePlaylist();
         Assert.assertEquals(homePage.getAddToPlaylistSuccessfulMsg(),expectedSongAddedMsg);
     }
+
+    @Test
+    public void deletePlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        String confirmationNotification = "Deleted playlist \"playlist to delete.\"";
+
+        loginPage.provideEmail("karina.usmanova01@testpro.io");
+        loginPage.providePassword("YrEdlRVe");
+        loginPage.clickLoginButton();
+        Thread.sleep(2000);
+
+        homePage.clickOnThePlaylist();
+        Thread.sleep(2000);
+        homePage.clickOnDeletePlaylistBtn();
+        Thread.sleep(2000);
+
+        Assert.assertEquals(homePage.deletedPlaylistSuccessfulMsg(),confirmationNotification);
+        Thread.sleep(2000);
+
+    }
+
 
 }
 

@@ -45,4 +45,18 @@ public void changeProfileName () throws InterruptedException {
 
 }
 
+@Test
+public void changeCurrentTheme() throws InterruptedException {
+    LoginPage loginPage = new LoginPage(getDriver());
+    UserProfilePage userProfilePage = new UserProfilePage(getDriver());
+
+    loginPage.login();
+    Thread.sleep(2000);
+    userProfilePage.clickOnAvatarIcon();
+    Thread.sleep(2000);
+    userProfilePage.chooseVioletTheme();
+
+    Assert.assertTrue(userProfilePage.isVioletThemeIsDisplayed());
+}
+
 }

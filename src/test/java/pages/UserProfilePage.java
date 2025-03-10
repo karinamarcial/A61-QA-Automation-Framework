@@ -17,6 +17,8 @@ public class UserProfilePage extends BasePage{
     By currentPasswordField = By.cssSelector("[name='current_password']");
     By avatarIcon = By.cssSelector("img.avatar");
     By actualProfileName = By.cssSelector("a.view-profile>span");
+    By violetTheme = By.cssSelector("div[data-testid='theme-card-violet']");
+    By violetBackground = By.cssSelector(".mac.with-extra-panel");
 
 
 
@@ -49,5 +51,13 @@ public class UserProfilePage extends BasePage{
 
     public String getActualProfileName() {
         return findElement(actualProfileName).getText();
+    }
+
+    public void chooseVioletTheme() {
+        findElement(violetTheme).click();
+    }
+
+    public boolean isVioletThemeIsDisplayed() {
+        return findElement(violetBackground).isDisplayed();
     }
 }
