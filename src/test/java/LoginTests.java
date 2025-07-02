@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
-    @Test(dataProvider = "loginNegativeTestData")
+   @Test(dataProvider = "loginNegativeTestData")
     public void negativeLoginTests(String email, String password) {
         //Objects
         LoginPage loginPage = new LoginPage(getDriver());

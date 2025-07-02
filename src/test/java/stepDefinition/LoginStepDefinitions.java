@@ -55,7 +55,7 @@ public class LoginStepDefinitions {
     public void iEnterPassword(String password) {
        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']"))).sendKeys(password);
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.provideEmail(password);
+        loginPage.providePassword(password);
     }
 
     @And("I click on login button")

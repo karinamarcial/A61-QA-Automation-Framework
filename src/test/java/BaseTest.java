@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -74,22 +75,6 @@ public class BaseTest {
         threadDriver.remove();
     }
 
-   /*public void clickLoginBtn() {
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        loginButton.click();
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }*/
 
     public void navigateToPage(String url) {
         //driver.get(url);
@@ -144,14 +129,17 @@ public WebDriver lambdaTest() throws MalformedURLException {
 
         String hubURL = "https://hub.lambdatest.com/wd/hub";
 
-    ChromeOptions browserOptions = new ChromeOptions();
+    /*ChromeOptions browserOptions = new ChromeOptions();
     browserOptions.setPlatformName("Windows 10");
-    browserOptions.setBrowserVersion("122.0");
+    browserOptions.setBrowserVersion("122.0");*/
+    FirefoxOptions browserOptions = new FirefoxOptions();
+    browserOptions.setPlatformName("Windows 10");
+    browserOptions.setBrowserVersion("139.0");
     HashMap<String, Object> ltOptions = new HashMap<String, Object>();
     ltOptions.put("username", "kwork.usmanova");
     ltOptions.put("accessKey", "LT_QTzscTF2J0SNh07DKwIO7SX4xrCpbgV6Or9RHeHtemyw0zU");
-    ltOptions.put("project", "Koel");
-    ltOptions.put("build", "Koel");
+    ltOptions.put("project", "Koel cloud");
+    ltOptions.put("build", "Koel execution");
     ltOptions.put("w3c", true);
     browserOptions.setCapability("LT:Options", ltOptions);
     //return new RemoteWebDriver(new URL(hubURL), browserOptions);

@@ -20,6 +20,16 @@ public class HomePageTest extends BaseTest {
         Assert.assertTrue(basePage.hoverOverPlay().isDisplayed());
     }
 
+    /*@Test
+    public void hoverOverSong() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        BasePage basePage = new BasePage(getDriver());
+
+        loginPage.login();
+
+
+    }*/
+
    @Test
     public void countSongsInPlaylist() throws InterruptedException {
        LoginPage loginPage = new LoginPage(getDriver());
@@ -99,6 +109,37 @@ public class HomePageTest extends BaseTest {
         Thread.sleep(2000);
 
     }
+
+    @Test
+    public void createNewPlaylist() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        String successfulNotification = "Created playlist \"Cool playlist.\"";
+
+        loginPage.login();
+        Thread.sleep(2000);
+        homePage.clickOnCreatePlaylistBtn();
+        Thread.sleep(2000);
+        homePage.chooseNewPlaylistOption();
+        Thread.sleep(2000);
+        homePage.typePlaylistName("Cool playlist");
+
+        Assert.assertEquals(homePage.createdPlaylistSuccessfulMsg(),successfulNotification);
+
+    }
+
+    @Test
+    public void getInfoAboutApp() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.login();
+        homePage.clickOnInfoButton();
+
+        Assert.assertTrue(homePage.popupInfoIsDisplayed());
+
+    }
+
 
 
 }

@@ -41,15 +41,17 @@ public class BasePage {
         WebElement soundBarVisualizer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.bars")));
         return soundBarVisualizer.isDisplayed();
     }
-    public void clickAllSongs() {
-        // WebElement allSongs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".menu a.songs")));
-        //allSongs.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
 
-    }
+
     public WebElement hoverOverPlay() {
         WebElement playButton = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
         actions.moveToElement(playButton).perform();
         return wait.until(ExpectedConditions.visibilityOf(playButton));
+    }
+
+    public WebElement hoverOverSong() {
+        WebElement recentlyAddedFirstSong = driver.findElement(By.xpath("//ol[@class='recently-added-album-list'][1]"));
+        actions.moveToElement(recentlyAddedFirstSong).perform();
+        return wait.until(ExpectedConditions.visibilityOf(recentlyAddedFirstSong));
     }
 }

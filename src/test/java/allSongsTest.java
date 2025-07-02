@@ -24,7 +24,7 @@ public void playSong() throws InterruptedException {
 
   loginPage.login();
   Thread.sleep(2000);
-  allSongsPage.clickAllSongs();
+  homePage.clickAllSongs();
   allSongsPage.contextClickFirstSong();
   allSongsPage.choosePlayOptions();
   //clickAllSongs and isSongPlaying are in BasePage
@@ -46,6 +46,21 @@ public void playNextSong() throws InterruptedException {
 
     Assert.assertTrue(homePage.pauseButtonIsDisplayed());
  }
+
+ @Test
+ public void likeFirstSongInAllSong() throws InterruptedException {
+     LoginPage loginPage = new LoginPage(getDriver());
+     HomePage homePage = new HomePage(getDriver());
+     AllSongsPage allSongsPage = new AllSongsPage(getDriver());
+
+     loginPage.login();
+     homePage.clickAllSongs();
+     allSongsPage.clickLikeBtn();
+
+     Assert.assertTrue(allSongsPage.redHeartIsDisplayed());
+
+
+}
 
 }
 

@@ -15,6 +15,8 @@ public class AllSongsPage extends BasePage{
     //Elements
     By playbackBtn = By.cssSelector("li.playback");
     By firstSong = By.cssSelector(".all-songs tr.song-item:nth-child(1)");
+    By firstSongLikeBtn = By.cssSelector(".all-songs tr.song-item:nth-child(1) td.favorite");
+    By likeBtnSelected = By.cssSelector(".all-songs tr.song-item:nth-child(1) .fa.fa-heart.text-maroon");
 
 
     //Helper methods
@@ -32,6 +34,15 @@ public class AllSongsPage extends BasePage{
     public void playNextSong() {
         WebElement nextSong = driver.findElement(By.xpath("//i[@class='next fa fa-step-forward control']"));
         nextSong.click();
+    }
+
+    public void clickLikeBtn(){
+        findElement(firstSongLikeBtn).click();
+    }
+
+    public boolean redHeartIsDisplayed() {
+       return findElement(likeBtnSelected).isDisplayed();
+
     }
 
 

@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -26,11 +27,20 @@ public class HomePage extends BasePage {
     By playlistDetails = By.cssSelector("span.meta.text-secondary span.meta");
     By pauseButton = By.xpath("//span[@class='pause']//i[@class='fa fa-pause']");
     By playButton = By.xpath("//span[@class='play']//i[@class='fa fa-play']");
-    By playlistToDelete = By.cssSelector(".playlist:nth-child(6)");
+    By playlistToDelete = By.cssSelector(".playlist:nth-child(8)");
     By deletePlaylistBtn = By.cssSelector(".del.btn-delete-playlist");
+    By createPlaylistPlusBtn = By.cssSelector("i[data-testid='sidebar-create-playlist-btn']");
+    By newPlaylistOption = By.cssSelector("ul li[data-testid='playlist-context-menu-create-simple']");
+    By inputField = By.cssSelector(".create input[name='name']");
+    By allSongs = By.cssSelector("li a.songs");
+    By infoButton = By.cssSelector("i.fa.fa-info-circle");
+    By aboutKoelPopup = By.cssSelector("button[data-test='close-modal-btn']");
+
+
 
 
     //helper methods
+
     public WebElement getUserAvatarIcon() {
         return findElement(userAvatarIcon);
     }
@@ -119,5 +129,35 @@ public class HomePage extends BasePage {
     public void clickOnThePlaylist() {
        findElement(playlistToDelete).click();
 
+    }
+    public void clickOnCreatePlaylistBtn() {
+        findElement(createPlaylistPlusBtn).click();
+    }
+
+    public void chooseNewPlaylistOption() {
+        findElement(newPlaylistOption).click();
+    }
+
+    public void typePlaylistName(String playlistName) {
+        findElement(inputField).sendKeys(playlistName);
+        findElement(inputField).sendKeys(Keys.ENTER);
+    }
+
+    public String createdPlaylistSuccessfulMsg() {
+       return findElement(notificationMsg).getText();
+    }
+
+    public void clickAllSongs() {
+        findElement(allSongs).click();
+
+    }
+
+    public void clickOnInfoButton() {
+        findElement(infoButton).click();
+
+    }
+
+    public boolean popupInfoIsDisplayed() {
+        return findElement(aboutKoelPopup).isDisplayed();
     }
 }
